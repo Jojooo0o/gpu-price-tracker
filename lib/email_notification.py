@@ -2,6 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 import config as cfg
 from lib.contact import Contact
+from datetime import datetime
 
 
 TEXT_SUBTYPE = 'plain'
@@ -29,10 +30,10 @@ def send_notification(mailserver, sender_port, data):
 
         # Terminate Session
         smtp.quit()
-        print('Email sent successfully')
+        print(datetime.now(), ': Email sent successfully')
 
     except Exception as ex:
-        print('Email sending failed: ', ex)
+        print(datetime.now(), ': Email sending failed: ', ex)
 
 
 def msg_wrapper(sender:Contact, receiver:Contact, subject:str, body:str):

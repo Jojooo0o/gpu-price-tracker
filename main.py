@@ -132,11 +132,17 @@ def extract_data_entries(soup, data):
     and return them as dictionary
     '''
     for entry in soup.find_all('li', class_='toggle'):
-        product_id = entry.find('small').string
-        product_name = entry.find('h2').string
-        product_price = entry.find('span', class_='site-currency-lg').string
-        product_status = entry.find('div', class_='site-stock-text').string
-        product_link = BASE_URL + entry.find('a', class_='site-product-link').get('href')
+        product_id, product_name, product_price, product_status, product_link = 'NA','NA','NA','NA','NA'
+        if not entry.find('small') is None:
+            product_id = entry.find('small').string
+        if not entry.find('h2') is None:
+            product_name = entry.find('h2').string
+        if not entry.find('span', class_='site-currency-lg') is None:
+            product_price = entry.find('span', class_='site-currency-lg').string
+        if not entry.find('div', class_='site-stock-text') is None:
+            product_status = entry.find('div', class_='site-stock-text').string
+        if not entry.find('a', class_='site-product-link').get('href') is None:
+            product_link = BASE_URL + entry.find('a', class_='site-product-link').get('href')
 
         if not product_id in data:
             data[product_id] = {'name': product_name, 'prices':[], 'url': product_link}

@@ -10,6 +10,9 @@ In order to run this small bot, you want to run the python main.py file.
 Running it at given time intervals to keep track of prices can be done with the 
 help of schedulers such as cron (for linux).
 
+NOTE: Ensure to set paths for cron working directories correctly to store the json file correctly as path is not stored absolute. 
+> Sample cron job: 0 12 * * * cd [PATH-TO-RESULTFOLDER] && /usr/bin/python [PATH-TO-PROJECTFOLDER]/main.py >> [PATH-TO-CRONLOGFOLDER]/cron.log 2>&1
+
 Before running the script you should change the config_sample.py to config.py
 and insert all the relevant information in the config.
 
